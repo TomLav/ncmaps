@@ -30,3 +30,5 @@ Running `ncmaps` should be enough in most cases, but check `ncmaps -h`.
 
 ## Author
 Thomas Lavergne, Norwegian Meteorological Institute
+
+(ncmaps expands https://github.com/samhatfield/ncview-scientific-colour-maps)
