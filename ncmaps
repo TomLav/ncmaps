@@ -1,0 +1,125 @@
+#!/usr/bin/env python3
+#============================================================
+#    ncmaps
+#    Copyright (C) 2021  Thomas Lavergne
+#
+#    This program is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation; either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License along
+#    with this program; if not, write to the Free Software Foundation, Inc.,
+#    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#============================================================
+
+import sys
+import os
+
+# Import python modules holding colormaps
+try:
+    # https://matplotlib.org/stable/tutorials/colors/colormaps.html
+    from matplotlib import cm
+    from matplotlib import pylab
+    has_mlib = True
+except ImportError:
+    has_mlib = False
+
+try:
+    # https://matplotlib.org/cmocean
+    import cmocean
+    has_cmocean = True
+except ImportError:
+    has_cmocean = False
+
+try:
+    # https://www.fabiocrameri.ch/colourmaps
+    # https://pypi.org/project/cmcrameri
+    import cmcrameri
+    has_cmcrameri = True
+except ImportError:
+    has_cmcrameri = False
+
+# We could probaby do without numpy, but it is convenient
+import numpy as np
+
+def write_one_ncmap(cmap, name, odir):
+    ''' Write a colormap into a .ncmap file that ncview will understand. '''
+    x = np.arange(0,256) / 255.
+    f = 255 * cmap(x)
+    fname = name + '.ncmap'
+    fname = os.path.join(odir,fname)
+    if not os.path.exists(odir):
+        os.makedirs(odir)
+        print("Make directory {}".format(odir,))
+
+    print("Write {}".format(fname,))
+    np.savetxt(fname,f[:,:3],['%d','%d','%d'])
+
+def write_mlib_cmaps(odir, all_cmaps=True):
+    ''' Write the colormaps from matplotlib. '''
+    cmaps = ('viridis', 'inferno', 'magma', 'plasma')
+    if all_cmaps:
+        cmaps = [t for t in pylab.colormaps() if not t.endswith('_r')]
+
+    for cmap in cmaps:
+        cmo = pylab.get_cmap(cmap)
+        write_one_ncmap(cmo, cmap, odir)
+
+def write_cmocean_cmaps(odir,):
+    ''' Write the colormaps from cmocean. '''
+    cmaps = cmocean.cm.cmapnames
+    for cmap in cmaps:
+        cmo = cmocean.cm.cmap_d[cmap]
+        write_one_ncmap(cmo, cmap, odir)
+
+def write_cmcrameri_cmaps(odir,):
+    ''' Write the colormaps from cmcrameri. '''
+    cmaps = cmcrameri.cm.crameri_cmaps.keys()
+    for cmap in cmaps:
+        cmo = cmcrameri.cm.crameri_cmaps[cmap]
+        write_one_ncmap(cmo, cmap, odir)
+
+if __name__ == '__main__':
+    import argparse
+    from argparse import RawDescriptionHelpFormatter
+
+    # default directory hidden in HOME
+    from os.path import expanduser
+    home = expanduser("~")
+    default_dir = os.path.join(home,'.ncmaps')
+
+    # Get commandline parameters
+    p = argparse.ArgumentParser("ncmaps", formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+                                description='Prepare scientific colormaps so that they can be used from ncview.')
+    p.add_argument('--dir', help='Directory where to write the colormaps.', default=default_dir)
+    p.add_argument('--all', help='Write all the colormaps, also the non "scientific" (aka perceptually uniform) ones.', action='store_true')
+    args = p.parse_args()
+
+    # Use the full path to the output directory
+    args.dir = os.path.realpath(args.dir)
+
+    if not has_mlib and not has_cmocean and not has_cmcrameri:
+        sys.exit("Found no colormap to write.")
+
+    if has_mlib:
+        write_mlib_cmaps(args.dir, all_cmaps=args.all)
+    else:
+        print("Skip colormaps from matplotlib (module not found).")
+
+    if has_cmocean:
+        write_cmocean_cmaps(args.dir,)
+    else:
+        print("Skip colormaps from cmocean (module not found).")
+
+    if has_cmcrameri:
+        write_cmcrameri_cmaps(args.dir,)
+    else:
+        print("Skip colormaps from cmcrameri (module not found).")
+
+    print("Success. Place 'export NCVIEWBASE={}' in your .profile and ncview will find the new colormaps.".format(args.dir))
