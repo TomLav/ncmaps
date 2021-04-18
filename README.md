@@ -22,7 +22,7 @@ New colormaps should be available the next time you run `ncview`.
  * [cmcrameri](https://pypi.org/project/cmcrameri/)
 
 These modules must be installed and accessible to your your python implementation (e.g. via *pip* or *conda*) **before** running ncmaps.
-Modules that are not available are skipped.
+This might require activating a *virtualenv*. Modules that are not available are skipped.
 
 ## Command-line parameters
 
