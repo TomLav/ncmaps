@@ -63,7 +63,7 @@ def write_one_ncmap(cmap, name, odir):
 
 def write_mlib_cmaps(odir, all_cmaps=True):
     ''' Write the colormaps from matplotlib. '''
-    cmaps = ('viridis', 'inferno', 'magma', 'plasma')
+    cmaps = ('viridis', 'inferno', 'magma', 'plasma', 'cividis')
     if all_cmaps:
         cmaps = [t for t in pylab.colormaps() if not t.endswith('_r')]
 
