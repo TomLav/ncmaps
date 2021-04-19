@@ -9,11 +9,20 @@ One of the weak points of ncview is its colormaps (e.g. jet), in particular the 
 
 ## Installation
 
- 1. Fetch the ncmaps repo from github, alternatively copy the ncmaps file;
- 2. Run ncmaps in the terminal (requires Python3);
+There are two ways for getting ncview to use the scientific colormaps:
+
+*Option 1:* 
+ 1. Fetch the ncmaps repo from github;
+ 2. Define (export) a shell environment variable to the sub-directory `ncmaps/`: `export NCVIEWBASE=</path/to/local/ncmaps/copy>/ncmaps/`.
+
+*Option 2:*
+ 1. Fetch the ncmaps repo from github;
+ 2. Run `python3 write_ncmaps` in the terminal;
  3. Define (export) a shell environment variable: `export NCVIEWBASE=${HOME}/.ncmaps`;
+
+The second option is mainly if you want to develop the package and add more colormaps (please consider making a PR).
  
-New colormaps should be available the next time you run `ncview`.
+In both cases, new colormaps should be available next time you run `ncview`.
 
 ## Supported colormaps
 *ncmaps* harvests scientific colormaps from the following python modules:
@@ -21,12 +30,12 @@ New colormaps should be available the next time you run `ncview`.
  * [cmocean](https://matplotlib.org/cmocean/)
  * [cmcrameri](https://pypi.org/project/cmcrameri/)
 
-These modules must be installed and accessible to your your python implementation (e.g. via *pip* or *conda*) **before** running ncmaps.
-This might require activating a *virtualenv*. Modules that are not available are skipped.
+These modules must be installed and accessible to your your python implementation (e.g. via *pip* or *conda*) **before** running `write_ncmaps`.
+This might require activating a *virtualenv*. Colormap modules that are not available are skipped.
 
 ## Command-line parameters
 
-Running `ncmaps` should be enough in most cases, but check `ncmaps -h`.
+Running `write_ncmaps` should be enough in most cases, but check `write_ncmaps -h`.
 
 ## Author
 Thomas Lavergne, Norwegian Meteorological Institute
