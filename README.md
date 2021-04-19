@@ -15,6 +15,8 @@ There are two ways for getting ncview to use the scientific colormaps:
  1. Fetch the ncmaps repo from github;
  2. Define (export) a shell environment variable to the sub-directory `ncmaps/`: `export NCVIEWBASE=</path/to/local/ncmaps/copy>/ncmaps/`.
 
+For example: `export NCVIEWBASE=/home/tomlav/software/ncmaps/ncmaps/` (note `ncmaps` twice). You should add the export to your `.profile`.
+
 *Option 2:*
  1. Fetch the ncmaps repo from github;
  2. Run `python3 write_ncmaps` in the terminal;
