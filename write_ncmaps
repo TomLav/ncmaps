@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #============================================================
-#    ncmaps
+#    write_ncmaps
 #    Copyright (C) 2021  Thomas Lavergne
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -95,7 +95,7 @@ if __name__ == '__main__':
     default_dir = os.path.join(home,'.ncmaps')
 
     # Get commandline parameters
-    p = argparse.ArgumentParser("ncmaps", formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+    p = argparse.ArgumentParser("write_ncmaps", formatter_class=argparse.ArgumentDefaultsHelpFormatter,
                                 description='Prepare scientific colormaps so that they can be used from ncview.')
     p.add_argument('--dir', help='Directory where to write the colormaps.', default=default_dir)
     p.add_argument('--all', help='Write all the colormaps, also the non "scientific" (aka perceptually uniform) ones.', action='store_true')
