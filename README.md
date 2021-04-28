@@ -31,6 +31,7 @@ In both cases, new colormaps should be available next time you run `ncview`.
  * [matplotlib](https://matplotlib.org/stable/tutorials/colors/colormaps.html)
  * [cmocean](https://matplotlib.org/cmocean/)
  * [cmcrameri](https://pypi.org/project/cmcrameri/)
+ * [cmasher](https://cmasher.readthedocs.io/index.html)
 
 These modules must be installed and accessible to your your python implementation (e.g. via *pip* or *conda*) **before** running `write_ncmaps`.
 This might require activating a *virtualenv*. Colormap modules that are not available are skipped.
