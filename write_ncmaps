@@ -45,6 +45,14 @@ try:
 except ImportError:
     has_cmcrameri = False
 
+try:
+    #  https://cmasher.readthedocs.io/index.html
+    import cmasher as cmr
+    from cmasher import cm as cmrcm
+    has_cmasher = True
+except ImportError:
+    has_cmasher = False
+
 # We could probaby do without numpy, but it is convenient
 import numpy as np
 
@@ -85,6 +93,15 @@ def write_cmcrameri_cmaps(odir,):
         cmo = cmcrameri.cm.crameri_cmaps[cmap]
         write_one_ncmap(cmo, cmap, odir)
 
+def write_cmasher_cmaps(odir,):
+    ''' Write the colomaps from cmasher. '''
+
+    for cmtype in ('sequential', 'diverging', 'cyclic'):
+        cmaps = [ t for t in cmrcm.cmap_cd[cmtype].keys() if not t.endswith('_r')]
+        for cmap in cmaps:
+            cmo = cmrcm.cmap_cd[cmtype][cmap]
+            write_one_ncmap(cmo, cmap, odir)
+
 if __name__ == '__main__':
     import argparse
     from argparse import RawDescriptionHelpFormatter
@@ -121,5 +138,10 @@ if __name__ == '__main__':
         write_cmcrameri_cmaps(args.dir,)
     else:
         print("Skip colormaps from cmcrameri (module not found).")
+
+    if has_cmasher:
+        write_cmasher_cmaps(args.dir,)
+    else:
+        print("Skip colormaps from cmasher (module not found).")
 
     print("Success. Place 'export NCVIEWBASE={}' in your .profile and ncview will find the new colormaps.".format(args.dir))
