@@ -7,6 +7,24 @@ One of the weak points of ncview is its colormaps (e.g. jet), in particular the 
 
 **ncmap** adds scientific colormaps to the configuration path of ncview, so that your data can be displayed using *viridis*, *inferno*, *cmocean*, and more.
 
+## Examples
+
+Viridis (Matplotlib)
+
+![Example of Viridis colormap](images/viridis_example.png)
+
+Thermal (cmocean)
+
+![Example of Thermal colormap](images/thermal_example.png)
+
+Oslo (cmcrameri)
+
+![Example of Oslo colormap](images/oslo_example.png)
+
+Eclipse (cmasher)
+
+![Example of Eclipse colormap](images/eclipse_example.png)
+
 ## Installation
 
 There are two ways for getting ncview to use the scientific colormaps:
