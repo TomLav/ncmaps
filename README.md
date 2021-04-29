@@ -21,6 +21,10 @@ Oslo (cmcrameri)
 
 ![Example of Oslo colormap](images/oslo_example.png)
 
+Eclipse (cmasher)
+
+![Example of Eclipse colormap](images/eclipse_example.png)
+
 ## Installation
 
 There are two ways for getting ncview to use the scientific colormaps:
