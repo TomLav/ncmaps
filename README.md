@@ -13,11 +13,11 @@ Viridis (Matplotlib)
 
 ![Example of Viridis colormap](images/viridis_example.png)
 
-Thermal (cmocean))
+Thermal (cmocean)
 
 ![Example of Thermal colormap](images/thermal_example.png)
 
-Oslo (cmcrameri))
+Oslo (cmcrameri)
 
 ![Example of Oslo colormap](images/oslo_example.png)
 
