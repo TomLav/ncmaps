@@ -29,18 +29,22 @@ Eclipse (cmasher)
 
 There are two ways for getting ncview to use the scientific colormaps:
 
-*Option 1:* 
+*Option 1: (easiest)* 
  1. Fetch the ncmaps repo from github;
  2. Define (export) a shell environment variable to the sub-directory `ncmaps/`: `export NCVIEWBASE=</path/to/local/ncmaps/copy>/ncmaps/`.
+ 2. Copy `ncmaps/.ncviewrc` to your HOME: `cp </path/to/local/ncmaps/copy>/ncmaps/.ncviewrc ${HOME}`.
 
-For example: `export NCVIEWBASE=/home/tomlav/software/ncmaps/ncmaps/` (note `ncmaps` twice). You should add the export to your `.profile`.
+For example: `export NCVIEWBASE=/home/tomlav/software/ncmaps/ncmaps/` (note `ncmaps` twice) and `cp /home/tomlav/software/ncmaps/ncmaps/.ncviewrc /home/tomlav/`.
+You should add the export to your `.profile`.
 
-*Option 2:*
+*Option 2: (requires python3)*
  1. Fetch the ncmaps repo from github;
  2. Run `python3 write_ncmaps` in the terminal;
  3. Define (export) a shell environment variable: `export NCVIEWBASE=${HOME}/.ncmaps`;
+ 2. Copy `${HOME}/.ncmaps/.ncviewrc` to your HOME: `cp ${HOME}/.ncmaps/.ncviewrc ${HOME}/`.
 
-The second option is mainly if you want to develop the package and add more colormaps (please consider making a PR).
+Here again, you should put the `export` command in your `.profile`.
+
  
 In both cases, new colormaps should be available next time you run `ncview`.
 
@@ -56,7 +60,7 @@ This might require activating a *virtualenv*. Colormap modules that are not avai
 
 ## Command-line parameters
 
-Running `write_ncmaps` should be enough in most cases, but check `write_ncmaps -h`.
+Running `python3 write_ncmaps` should be enough in most cases, but check `write_ncmaps -h`.
 
 ## Author
 Thomas Lavergne, Norwegian Meteorological Institute
