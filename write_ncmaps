@@ -197,8 +197,6 @@ if __name__ == '__main__':
         ncmaps_in_dir.append(ncf.replace('.ncmap',''))
     ncmaps_in_dir = sorted(ncmaps_in_dir)
 
-    print(len(ncmaps_in_dir), len(all_cmaps))
-
     # prepare a .ncviewrc file
     ncviewrc = os.path.join(args.dir, '.ncviewrc')
     write_ncviewrc_header(ncviewrc)
