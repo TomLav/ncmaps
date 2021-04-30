@@ -101,14 +101,15 @@ def write_cmcrameri_cmaps(odir,):
 
 def write_cmasher_cmaps(odir,):
     ''' Write the colomaps from cmasher. '''
-
+    all_cmaps = []
     for cmtype in ('sequential', 'diverging', 'cyclic'):
         cmaps = [ t for t in cmrcm.cmap_cd[cmtype].keys() if not t.endswith('_r')]
         for cmap in cmaps:
             cmo = cmrcm.cmap_cd[cmtype][cmap]
             write_one_ncmap(cmo, cmap, odir)
+        all_cmaps.extend(cmaps,)
 
-    return cmaps
+    return all_cmaps
 
 def write_ncviewrc_header(ncviewrc,):
     ''' Create .ncviewrc file and Write a header (2 lines). '''
