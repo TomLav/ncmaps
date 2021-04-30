@@ -20,6 +20,7 @@
 
 import sys
 import os
+from glob import glob
 
 # Import python modules holding colormaps
 try:
@@ -160,8 +161,8 @@ if __name__ == '__main__':
     if not has_mlib and not has_cmocean and not has_cmcrameri:
         sys.exit("Found no colormap to write.")
 
+    # write all the .ncmaps files
     all_cmaps = []
-
     if has_mlib:
         all_cmaps.extend(write_mlib_cmaps(args.dir, all_cmaps=args.all))
     else:
@@ -182,11 +183,27 @@ if __name__ == '__main__':
     else:
         print("Skip colormaps from cmasher (module not found).")
 
+    # the next step is to write a .ncviewrc file, to give the new
+    #   colormaps priority and even disable the legacy ones. It is
+    #   key that the .ncviewrc lists exactly the content of the
+    #   directory with .ncmaps files.
+    patt = os.path.join(args.dir,'*.ncmap')
+    list_ncmap_files = glob(patt)
+    if len(patt) == 0:
+        sys.exit("Internal error: cannot find the .ncmaps files we just wrote.")
+    ncmaps_in_dir = []
+    for ncmap_file in list_ncmap_files:
+        ncf = os.path.basename(ncmap_file)
+        ncmaps_in_dir.append(ncf.replace('.ncmap',''))
+    ncmaps_in_dir = sorted(ncmaps_in_dir)
+
+    print(len(ncmaps_in_dir), len(all_cmaps))
+
     # prepare a .ncviewrc file
     ncviewrc = os.path.join(args.dir, '.ncviewrc')
     write_ncviewrc_header(ncviewrc)
     # write the new colormaps to .ncviewrc
-    write_cmaps_ncviewrc(ncviewrc,all_cmaps)
+    write_cmaps_ncviewrc(ncviewrc,ncmaps_in_dir)
     # disable the legacy ncview colormaps
     legacy_cmaps = ('3gauss', 'detail', 'ssec', 'bright', 'banded', 'rainbow', 'jaisnb', \
                     'jaisnc', 'jaisnd', 'blu_red', 'manga', 'jet', 'wheel', '3saw', \
