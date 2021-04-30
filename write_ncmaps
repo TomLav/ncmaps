@@ -172,7 +172,7 @@ if __name__ == '__main__':
     else:
         print("Skip colormaps from cmocean (module not found).")
 
-    if has_cmcrameri and False:
+    if has_cmcrameri:
         all_cmaps.extend(write_cmcrameri_cmaps(args.dir,))
     else:
         print("Skip colormaps from cmcrameri (module not found).")
