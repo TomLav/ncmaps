@@ -178,10 +178,19 @@ if __name__ == '__main__':
     else:
         print("Skip colormaps from cmcrameri (module not found).")
 
-    if has_cmasher and False:
-        all_cmaps.extend(write_cmasher_cmaps(args.dir,))
-    else:
-        print("Skip colormaps from cmasher (module not found).")
+    # In ncview (Ncview 2.1.8 David W. Pierce  8 March 2017)
+    #   a bug is triggered if the number of colormaps available
+    #   to ncview through NCVIEWBASE is larger than 79.
+    #   (see https://github.com/TomLav/ncmaps/issues/5#issuecomment-832060948)
+    #
+    # We can thus not support the cmasher colormaps at present. The code
+    #   to handler cmasher is kept but de-activated. 
+    #
+    #if has_cmasher:
+    #    all_cmaps.extend(write_cmasher_cmaps(args.dir,))
+    #else:
+    #    print("Skip colormaps from cmasher (module not found).")
+
 
     # the next step is to write a .ncviewrc file, to give the new
     #   colormaps priority and even disable the legacy ones. It is
@@ -196,6 +205,11 @@ if __name__ == '__main__':
         ncf = os.path.basename(ncmap_file)
         ncmaps_in_dir.append(ncf.replace('.ncmap',''))
     ncmaps_in_dir = sorted(ncmaps_in_dir)
+
+    # Check that we are below the limit set by the bug in ncview (see above).
+    print(len(ncmaps_in_dir))
+    if len(ncmaps_in_dir) >= 80:
+        print("WARNING ! There are now {} .ncmap files in {}. This might trigger a bug in ncview (>= 80).".format(len(ncmaps_in_dir), args.dir))
 
     # prepare a .ncviewrc file
     ncviewrc = os.path.join(args.dir, '.ncviewrc')
