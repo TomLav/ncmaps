@@ -70,11 +70,9 @@ def write_one_ncmap(cmap, name, odir):
     print("Write {}".format(fname,))
     np.savetxt(fname,f[:,:3],['%d','%d','%d'])
 
-def write_mlib_cmaps(odir, all_cmaps=True):
+def write_mlib_cmaps(odir, ):
     ''' Write the colormaps from matplotlib. '''
     cmaps = ('viridis', 'inferno', 'magma', 'plasma', 'cividis')
-    if all_cmaps:
-        cmaps = [t for t in pylab.colormaps() if not t.endswith('_r')]
 
     for cmap in cmaps:
         cmo = pylab.get_cmap(cmap)
@@ -152,7 +150,6 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser("write_ncmaps", formatter_class=argparse.ArgumentDefaultsHelpFormatter,
                                 description='Prepare scientific colormaps so that they can be used from ncview.')
     p.add_argument('--dir', help='Directory where to write the colormaps.', default=default_dir)
-    p.add_argument('--all', help='Write all the colormaps, also the non "scientific" (aka perceptually uniform) ones.', action='store_true')
     args = p.parse_args()
 
     # Use the full path to the output directory
@@ -164,7 +161,7 @@ if __name__ == '__main__':
     # write all the .ncmaps files
     all_cmaps = []
     if has_mlib:
-        all_cmaps.extend(write_mlib_cmaps(args.dir, all_cmaps=args.all))
+        all_cmaps.extend(write_mlib_cmaps(args.dir,))
     else:
         print("Skip colormaps from matplotlib (module not found).")
 
