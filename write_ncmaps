@@ -204,10 +204,12 @@ if __name__ == '__main__':
     for ncmap_file in list_ncmap_files:
         ncf = os.path.basename(ncmap_file)
         ncmaps_in_dir.append(ncf.replace('.ncmap',''))
-    ncmaps_in_dir = sorted(ncmaps_in_dir)
+
+    # This sort() will make the colormaps to be listed alphabetically
+    #   in the .ncviewrc file (and thus ncview).
+    ncmaps_in_dir.sort(key=str.lower)
 
     # Check that we are below the limit set by the bug in ncview (see above).
-    print(len(ncmaps_in_dir))
     if len(ncmaps_in_dir) >= 80:
         print("WARNING ! There are now {} .ncmap files in {}. This might trigger a bug in ncview (>= 80).".format(len(ncmaps_in_dir), args.dir))
 
