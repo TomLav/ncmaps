@@ -72,7 +72,10 @@ def write_one_ncmap(cmap, name, odir):
 
 def write_mlib_cmaps(odir, ):
     ''' Write the colormaps from matplotlib. '''
-    cmaps = ('viridis', 'inferno', 'magma', 'plasma', 'cividis')
+    # Perceptually Uniform Sequential colormaps
+    cmaps = ['viridis', 'inferno', 'magma', 'plasma', 'cividis']
+    # Add some more colormaps (diverging and cyclic)
+    cmaps.extend(['PiYG', 'PRGn', 'RdBu', 'coolwarm', 'bwr', 'twilight', 'twilight_shifted'])
 
     for cmap in cmaps:
         cmo = pylab.get_cmap(cmap)
