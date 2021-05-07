@@ -224,4 +224,8 @@ if __name__ == '__main__':
                     'bw', 'default', 'extrema', 'helix', 'helix2', 'hotres')
     write_cmaps_ncviewrc(ncviewrc,legacy_cmaps,enabled=False)
 
-    print("Success. Place 'export NCVIEWBASE={}' in your .profile and ncview will find the new colormaps.".format(args.dir))
+    print("")
+    print("Success! You can now:")
+    print(" 1. Have 'export NCVIEWBASE={}' in your .profile so that ncview finds the new colormaps.".format(args.dir))
+    print(' 2. Copy {} to your HOME to disable the legacy colormaps.'.format(ncviewrc,))
+
