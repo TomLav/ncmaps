@@ -68,7 +68,8 @@ This bug is the reason why we do not support additional colormaps (e.g. `cmasher
 
 ![The Opts interface in ncview](images/ncview_opt.png)
 
-## Author
+## Authors
 Thomas Lavergne, Norwegian Meteorological Institute
+Sam Hatfield,  European Centre for Medium-Range Weather Forecasts
 
 (ncmaps expands https://github.com/samhatfield/ncview-scientific-colour-maps)
