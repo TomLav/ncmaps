@@ -62,14 +62,15 @@ Should this happen to you, try to: delete your `.ncviewrc` file (in your HOME). 
 This bug is the reason why we do not support additional colormaps (e.g. `cmasher`).
 
 2. `ncview` offers a way to enable, disable, and re-order the colormaps (see button `Opts`). The configuration is saved into the
-`.ncviewrc` file in your HOME. The `.ncviewrc` file we provide in this package 1) disables all the "legacy" colormaps of `ncview` and
-2) orders the colormaps by name (alphabetic). Using our `.ncvirewc` file will overwrite your own preferences. You can start from our
+`.ncviewrc` file in your HOME. The `.ncviewrc` file we provide in this package a) disables all the "legacy" colormaps of `ncview` and
+b) orders the colormaps by name (alphabetic). Using our `.ncvirewc` file will overwrite your own preferences. You can start from our
 `.ncvirewc` file and further customize your colormaps.
 
 ![The Opts interface in ncview](images/ncview_opt.png)
 
 ## Authors
 Thomas Lavergne, Norwegian Meteorological Institute
+
 Sam Hatfield,  European Centre for Medium-Range Weather Forecasts
 
 (ncmaps expands https://github.com/samhatfield/ncview-scientific-colour-maps)
