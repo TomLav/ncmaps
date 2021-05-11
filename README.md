@@ -25,19 +25,19 @@ Oslo (cmcrameri)
 
 There are two ways for getting `ncview` to use the scientific colormaps:
 
-*Option 1: (easiest)* 
+*Option 1: (recommended, easiest)* 
  1. Fetch this repo from github;
  2. Define (export) a shell environment variable to the sub-directory `ncmaps/`: `export NCVIEWBASE=</path/to/local/ncmaps/copy>/ncmaps/`.
- 2. Copy `ncmaps/.ncviewrc` to your HOME: `cp </path/to/local/ncmaps/copy>/ncmaps/.ncviewrc ${HOME}`.
+ 3. Copy `ncmaps/.ncviewrc` to your HOME: `cp </path/to/local/ncmaps/copy>/ncmaps/.ncviewrc ${HOME}`.
 
 For example: `export NCVIEWBASE=/home/tomlav/software/ncmaps/ncmaps/` (note `ncmaps` twice) and `cp /home/tomlav/software/ncmaps/ncmaps/.ncviewrc /home/tomlav/`.
 You should add the export to your `.profile`.
 
-*Option 2: (requires python3)*
+*Option 2: (for developers)*
  1. Fetch this repo from github;
  2. Run `python3 write_ncmaps` in the terminal;
  3. Define (export) a shell environment variable: `export NCVIEWBASE=${HOME}/.ncmaps`;
- 2. Copy `${HOME}/.ncmaps/.ncviewrc` to your HOME: `cp ${HOME}/.ncmaps/.ncviewrc ${HOME}/`.
+ 4. Copy `${HOME}/.ncmaps/.ncviewrc` to your HOME: `cp ${HOME}/.ncmaps/.ncviewrc ${HOME}/`.
 
 Here again, you should put the `export` command in your `.profile`.
 
