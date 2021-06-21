@@ -63,8 +63,8 @@ This bug is the reason why we do not support additional colormaps (e.g. `cmasher
 
 2. `ncview` offers a way to enable, disable, and re-order the colormaps (see button `Opts`). The configuration is saved into the
 `.ncviewrc` file in your HOME. The `.ncviewrc` file we provide in this package a) disables all the "legacy" colormaps of `ncview` and
-b) orders the colormaps by name (alphabetic). Using our `.ncvirewc` file will overwrite your own preferences. You can start from our
-`.ncvirewc` file and further customize your colormaps.
+b) orders the colormaps by name (alphabetic). Using our `.ncviewrc` file will overwrite your own preferences. You can start from our
+`.ncviewrc` file and further customize your colormaps.
 
 ![The Opts interface in ncview](images/ncview_opt.png)
 
