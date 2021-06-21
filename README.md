@@ -26,7 +26,7 @@ Oslo (cmcrameri)
 There are two ways for getting `ncview` to use the scientific colormaps:
 
 *Option 1: (recommended, easiest)* 
- 1. Fetch this repo from github;
+ 1. `git clone` this repo somewhere in your HOME;
  2. Define (export) a shell environment variable to the sub-directory `ncmaps/`: `export NCVIEWBASE=</path/to/local/ncmaps/copy>/ncmaps/`.
  3. Copy `ncmaps/.ncviewrc` to your HOME: `cp </path/to/local/ncmaps/copy>/ncmaps/.ncviewrc ${HOME}`.
 
