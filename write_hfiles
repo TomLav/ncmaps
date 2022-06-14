@@ -192,7 +192,7 @@ if __name__ == '__main__':
     #   in the .ncviewrc file (and thus ncview).
     ncmaps_in_dir.sort(key=str.lower)
 
-    fname = os.path.join(args.dir,'colormaps_ncmaps.h')
+    fname = os.path.join('.','colormaps_ncmaps.h')  # we place the file in '.'
     with open(fname, 'w') as _:
         # write header
         _.write('// Colormaps provided by ncmaps - {}\n'.format(datetime.utcnow().isoformat()))
