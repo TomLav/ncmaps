@@ -61,7 +61,7 @@ def write_one_hfile(cmap, name, odir):
     ''' Write a colormap into a .h file to be included in the ncview source code. '''
     x = np.arange(0,256) / 255.
     f = 255 * cmap(x)
-    fname = name + '.h'
+    fname = 'colormaps_' + name + '.h'
     fname = os.path.join(odir,fname)
     if not os.path.exists(odir):
         os.makedirs(odir)
