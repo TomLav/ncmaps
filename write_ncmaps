@@ -94,9 +94,15 @@ def write_cmocean_cmaps(odir,):
 
 def write_cmcrameri_cmaps(odir,):
     ''' Write the colormaps from cmcrameri. '''
-    cmaps = cmcrameri.cm.crameri_cmaps.keys()
+    try:
+        # old interface (at least before 1.4)
+        cmap_dict = cmcrameri.cm.crameri_cmap
+    except AttributeError:
+        cmap_dict = cmcrameri.cm.cmaps
+
+    cmaps = [cma for cma in cmap_dict.keys() if not cma.endswith('_r') and not cma.endswith('S')]
     for cmap in cmaps:
-        cmo = cmcrameri.cm.crameri_cmaps[cmap]
+        cmo = cmap_dict[cmap]
         write_one_ncmap(cmo, cmap, odir)
 
     return cmaps
